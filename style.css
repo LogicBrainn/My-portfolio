@@ -1,0 +1,36 @@
+.jumbotron{
+    padding: 2rem 0rem 0;
+}
+
+#project{
+    background-color: rgb(184, 184, 184);
+}
+#about{
+    background-color: rgb(155, 155, 155);
+    color: rgb(220, 220, 220);
+}
+.nav-item{
+    margin-right: 5px;
+}
+
+.nav-item:hover{
+    background-color: rgb(174, 174, 174);
+    border-radius: 10px;
+}
+.nav-link.active{
+    background-color: rgb(174, 174, 174);
+    border-radius: 10px;
+}
+.rounded-circle{
+    border: 3px solid white;
+}
+footer a:hover{
+    font-weight: bold;
+}
+
+.btn {
+    background-color: gray;
+}
+.btn:hover {
+    background-color: rgb(184, 183, 183);
+}
