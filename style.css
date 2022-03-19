@@ -28,9 +28,7 @@ footer a:hover{
     font-weight: bold;
 }
 
-.btn {
-    background-color: gray;
-}
+
 .btn:hover {
     background-color: rgb(184, 183, 183);
 }
