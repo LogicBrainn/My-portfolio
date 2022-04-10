@@ -3,11 +3,15 @@
 }
 
 #project{
-    background-color: rgb(184, 184, 184);
+    background-color: rgb(202, 202, 202);
+    color: rgb(54, 54, 54);
 }
 #about{
     background-color: rgb(155, 155, 155);
-    color: rgb(220, 220, 220);
+    color: rgb(54, 54, 54);
+}
+#contact{
+    padding-bottom: 10vh;
 }
 .nav-item{
     margin-right: 5px;
@@ -35,7 +39,7 @@ footer a:hover{
     background-color: rgb(184, 183, 183);
 }
 
-#about, #home, #project{
+#about, #home, #project, #contact{
     padding-top: 15vh;
 }
 
@@ -43,10 +47,5 @@ footer a:hover{
   color: black;
   transition: .1s;
   border: 5px solid;
-  border-radius: 10px;
-}
-#animations a:hover .card{
-  transition: .1s;
-  border: 5px solid white;
   border-radius: 10px;
 }
