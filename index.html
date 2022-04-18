@@ -196,15 +196,23 @@
           </div>
         </div>
         <div class="row justify-content-center">
+          
+         
+          
+         
           <div class="col-md-6">
-            <form>
+            <div class="mb-3 ">  <div class="alert alertku " role="alert" style="position: absolute; background-color: rgba(16, 50, 94, 0.701);color: white;transition: .5s;display: none;">
+              Thanks! pesan anda sudah terkirim.
+            </div></div>
+            <form name="inputform">
               <div class="mb-3">
                 <label for="namakontak" class="form-label">Name</label>
                 <input
                   type="text"
                   class="form-control"
                   id="namakontak"
-                  aria-describedby="emailHelp"
+                  
+                  name="nama"
                 />
               </div>
               <div class="mb-3">
@@ -212,25 +220,37 @@
                   >Email address</label
                 >
                 <input
+                name="email"
                   type="email"
                   class="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
+                  placeholder="contoh@gmail.com"
                 />
               </div>
               <div class="mb-3">
                 <label for="pesankontak" class="form-label"
                   >Pesan</label
                 >
-              <textarea class="form-control" id="pesankontak"  rows="3"></textarea>
+              <textarea name="pesan" class="form-control" id="pesankontak"  rows="3"></textarea>
 
               </div>
+            </form>
+            
               <div style="display: flex;align-items: center;">
-                <button type="submit" class="btn">Submit</button>
+                <form name='LogicBrain-form-contact' >
+                <button type="submit" class="btn btn-submit">Submit</button>
+                <button class="btn btn-danger btn-sedangmengirim" style="display: none;" type="button" disabled>
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Sedang mengirim..
+                </button>
+              </form>
                 <a href="https://www.instagram.com/logicbrainn/" target="_blank" style="color: rgb(204, 72, 72);margin-left: 5vh;font-size: 5vh;"><i class="fa-brands fa-instagram" ></i>   </a>
                 <a target="_blank" href="https://api.whatsapp.com/send?phone=089528983887&text=Haloo LogicBrain, saya tertarik dengan projrect anda" style="color:rgb(25, 143, 25); margin-left: 5vh;font-size: 5vh;"><i class="fa-brands fa-whatsapp"></i></a>
-            </form>
+                
+            
               </div>
+            
               
             
           </div>
@@ -260,5 +280,34 @@
     ></script>
     <!-- tema -->
     <script src="tomboltema.js"></script>
+<!-- untuk form google sheet -->
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbxGuSLLxuZR8I6WTH7j2yCjldF9QViZImWGk5vmc49D92CdZEKNoUdZntdqNIPKjZ8R4g/exec'
+      const form = document.forms['LogicBrain-form-contact']
+      const formInput =document.forms['inputform']
+      const btnmengirim = document.querySelector(".btn-sedangmengirim")
+      const btnSubmit = document.querySelector(".btn-submit")
+      const munculAlert = document.querySelector(".alertku")
+
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+
+        // tampilkan (sedang mengirim)
+        btnmengirim.style=''
+        // hilangkan tombol submit
+        btnSubmit.style="display:none;"
+        // reset form 
+        formInput.reset()
+        fetch(scriptURL, { method: 'POST', body: new FormData(formInput)})
+          .then(response => {
+            // tampilkan (sedang mengirim), tampilkan munculAlert dan tampilkan tombol submit
+            btnmengirim.style="display: none;"
+            btnSubmit.style=""
+            munculAlert.style.display="inline"
+            setTimeout("munculAlert.style.display='none'",2000)
+            console.log('Success!', response)})
+          .catch(error => console.error('Error!', error.message))
+      })
+    </script>
   </body>
 </html>
