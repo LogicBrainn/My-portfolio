@@ -15,7 +15,7 @@ var contact = document.getElementById("contact");
 // bagian footer
 var footer = document.getElementById("footer")
 
-// function for background color and text color dark
+// function untuk background color and text color dark
 function dark(){
     buttonTema.classList="bg-light";
     buttonTema.innerHTML="Dark";
@@ -30,7 +30,7 @@ function dark(){
     contact.style="background-color: black;color:white";
     footer.style="background-color: rgb(66, 66, 66)";
 }
-// function for background color and text color light
+// function untuk background color dan text color light
 function light(){
     buttonTema.classList="bg-dark";
     buttonTema.innerHTML="Light";
@@ -45,7 +45,7 @@ function light(){
     contact.style="background-color: white;color:color:rgb(54, 54, 54);";
     footer.style="background-color: black";
 }
-// function for onclick buttonTema
+// function untuk ketika buttonTema diklik
 function tema(){
     if (buttonTema.classList=="bg-dark")dark();
     else if(buttonTema.classList=="bg-light")light();
