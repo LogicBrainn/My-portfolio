@@ -196,67 +196,40 @@
           </div>
         </div>
         <div class="row justify-content-center">
-          
-         
-          
-         
-          <div class="col-md-6">
-            <div class="mb-3 ">  <div class="alert alertku " role="alert" style="position: absolute; background-color: rgba(16, 50, 94, 0.701);color: white;transition: .5s;display: none;">
-              Thanks! pesan anda sudah terkirim.
-            </div></div>
-            <form name="inputform">
+          <!-- form Contact -->
+          <div class="col-6">
+            <form name="LogicBrainIsi">
               <div class="mb-3">
-                <label for="namakontak" class="form-label">Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="namakontak"
-                  
-                  name="nama"
-                />
+                <label for="exampleInputName" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp" name="nama">
+              </div>
+              <div id="alertPesan" style="justify-content: center;display: flex; display: none;">
+                <div style="position: absolute; border: 1px solid rgb(133, 158, 177); padding: 3vh 5vh;border-radius: 10px;background-color: rgba(252, 36, 36, 0.792);color: rgb(241, 240, 255);">Thanks!! Pesan sudah terkirim</div>
               </div>
               <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label"
-                  >Email address</label
-                >
-                <input
-                name="email"
-                  type="email"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="contoh@gmail.com"
-                />
-              </div>
+                <label for="exampleInputEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail" name="email"> 
+              </div> 
               <div class="mb-3">
-                <label for="pesankontak" class="form-label"
-                  >Pesan</label
-                >
-              <textarea name="pesan" class="form-control" id="pesankontak"  rows="3"></textarea>
-
+                <label for="exampleInputText" class="form-label">Pesan</label>
+                <textarea class="form-control" id="exampleInputText" name="pesan"></textarea>
               </div>
             </form>
-            
-              <div style="display: flex;align-items: center;">
-                <form name='LogicBrain-form-contact' >
-                <button type="submit" class="btn btn-submit">Submit</button>
-                <button class="btn btn-danger btn-sedangmengirim" style="display: none;" type="button" disabled>
-                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                  Sedang mengirim..
-                </button>
-              </form>
-                <a href="https://www.instagram.com/logicbrainn/" target="_blank" style="color: rgb(204, 72, 72);margin-left: 5vh;font-size: 5vh;"><i class="fa-brands fa-instagram" ></i>   </a>
-                <a target="_blank" href="https://api.whatsapp.com/send?phone=089528983887&text=Haloo LogicBrain, saya tertarik dengan projrect anda" style="color:rgb(25, 143, 25); margin-left: 5vh;font-size: 5vh;"><i class="fa-brands fa-whatsapp"></i></a>
-                
-            
-              </div>
-            
+            <form name="LogicBrainSubmit"> 
+              <button type="submit" class="btn" style="background-color: rgb(10, 114, 225);color: white;" id="tombolSubmit">Submit</button>
+              <button class="btn btn-danger" type="button" disabled id="mengirimPesan" style="display: none;">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Mengirim Pesan...
+              </button>
+            </form>
+          </div>
+          
+
               
             
           </div>
         </div>
-      </div>
-      
+     
     </section>
     <!-- akhir Contact -->
 
@@ -283,28 +256,31 @@
 <!-- untuk form google sheet -->
     <script>
       const scriptURL = 'https://script.google.com/macros/s/AKfycbxGuSLLxuZR8I6WTH7j2yCjldF9QViZImWGk5vmc49D92CdZEKNoUdZntdqNIPKjZ8R4g/exec'
-      const form = document.forms['LogicBrain-form-contact']
-      const formInput =document.forms['inputform']
-      const btnmengirim = document.querySelector(".btn-sedangmengirim")
-      const btnSubmit = document.querySelector(".btn-submit")
-      const munculAlert = document.querySelector(".alertku")
+      const formInput = document.forms['LogicBrainIsi']
+      const formSubmit = document.forms['LogicBrainSubmit']
+      const tombolSubmit = document.getElementById("tombolSubmit")
+      const mengirimPesan = document.getElementById("mengirimPesan")
+      const alertPesan = document.getElementById("alertPesan")
 
-      form.addEventListener('submit', e => {
+      formSubmit.addEventListener('submit', e => {
         e.preventDefault()
-
-        // tampilkan (sedang mengirim)
-        btnmengirim.style=''
-        // hilangkan tombol submit
-        btnSubmit.style="display:none;"
-        // reset form 
-        formInput.reset()
+        // ketika diklik tampilkan mengirim pesan, dan hilangkan tombol submit'
+         tombolSubmit.style.display="none"
+         mengirimPesan.style.display="inline"
+        
         fetch(scriptURL, { method: 'POST', body: new FormData(formInput)})
           .then(response => {
-            // tampilkan (sedang mengirim), tampilkan munculAlert dan tampilkan tombol submit
-            btnmengirim.style="display: none;"
-            btnSubmit.style=""
-            munculAlert.style.display="inline"
-            setTimeout("munculAlert.style.display='none'",2000)
+            // Mereset isi inputan,tampilkan tombolSubmit dan hilangkan "mengirim pesan"
+            formInput.reset()
+            tombolSubmit.style.display="inline"
+            mengirimPesan.style.display="none"
+            
+            // tampilkan alertPesan
+            alertPesan.style.display="flex"
+            setTimeout("alertPesan.style.display='none'",2000)
+          
+            
+           
             console.log('Success!', response)})
           .catch(error => console.error('Error!', error.message))
       })
